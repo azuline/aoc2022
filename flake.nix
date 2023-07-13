@@ -15,6 +15,16 @@
               name = "aoc2022-shell";
               paths = with pkgs; [
                 zig
+                zls
+                (writeShellScriptBin "run-test" ''
+                  zig test solution.zig
+                '')
+                (writeShellScriptBin "run-example" ''
+                  cat input.example | zig run solution.zig
+                '')
+                (writeShellScriptBin "run" ''
+                  cat input | zig run solution.zig
+                '')
               ];
             })
           ];
