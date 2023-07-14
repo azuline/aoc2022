@@ -19,7 +19,6 @@ pub fn main() !void {
 
 fn part1(input: []const u8) !u32 {
     var max: u32 = 0;
-
     var inventories = std.mem.split(u8, input, "\n\n");
     while (inventories.next()) |inventory| {
         var items = std.mem.split(u8, inventory, "\n");
@@ -29,7 +28,6 @@ fn part1(input: []const u8) !u32 {
         }
         max = std.math.max(sum, max);
     }
-
     return max;
 }
 
@@ -37,7 +35,6 @@ fn part2(input: []const u8) !u32 {
     var first: u32 = 0;
     var second: u32 = 0;
     var third: u32 = 0;
-
     var inventories = std.mem.split(u8, input, "\n\n");
     while (inventories.next()) |inventory| {
         var items = std.mem.split(u8, inventory, "\n");
@@ -57,7 +54,6 @@ fn part2(input: []const u8) !u32 {
             first = sum;
         }
     }
-
     return first + second + third;
 }
 
