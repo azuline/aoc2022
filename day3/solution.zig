@@ -21,13 +21,11 @@ pub fn main() !void {
 
 fn part1(input: []const u8) !u32 {
     var prioritySum: u32 = 0;
-
     var rucksacks = std.mem.split(u8, input, "\n");
     while (rucksacks.next()) |rucksack| {
         const halfway = rucksack.len / 2;
         const firstSack = rucksack[0..halfway];
         const secondSack = rucksack[halfway..rucksack.len];
-
         // Use a for loop over a set b/c it should have good locality.
         loop: for (firstSack) |x| {
             for (secondSack) |y| {
@@ -38,13 +36,11 @@ fn part1(input: []const u8) !u32 {
             }
         }
     }
-
     return prioritySum;
 }
 
 fn part2(input: []const u8) !u32 {
     var prioritySum: u32 = 0;
-
     var rucksacks = std.mem.split(u8, input, "\n");
     var done = false;
     while (!done) {
@@ -54,7 +50,6 @@ fn part2(input: []const u8) !u32 {
         if (firstSack == null or secondSack == null or thirdSack == null) {
             break;
         }
-
         // Use a for loop over a set b/c it should have good locality.
         loop: for (firstSack.?) |x| {
             for (secondSack.?) |y| {
@@ -70,7 +65,6 @@ fn part2(input: []const u8) !u32 {
             }
         }
     }
-
     return prioritySum;
 }
 
