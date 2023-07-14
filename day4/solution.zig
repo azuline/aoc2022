@@ -11,6 +11,7 @@ pub fn main() !void {
     var bufferedReader = std.io.bufferedReader(stdin);
     const inputReader = bufferedReader.reader();
     const rawInput = try inputReader.readAllAlloc(allocator, 1048576);
+    defer allocator.free(rawInput);
     const input = std.mem.trim(u8, rawInput, "\n");
 
     const r1 = try part1(input);

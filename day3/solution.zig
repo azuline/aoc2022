@@ -11,6 +11,7 @@ pub fn main() !void {
     var bufferedReader = std.io.bufferedReader(stdin);
     const inputReader = bufferedReader.reader();
     const rawInput = try inputReader.readAllAlloc(allocator, 1048576);
+    defer allocator.free(rawInput);
     const input = std.mem.trim(u8, rawInput, "\n");
 
     const r1 = try part1(input);
@@ -47,15 +48,11 @@ fn part2(input: []const u8) !u32 {
         const firstSack = rucksacks.next();
         const secondSack = rucksacks.next();
         const thirdSack = rucksacks.next();
-        if (firstSack == null or secondSack == null or thirdSack == null) {
-            break;
-        }
+        if (firstSack == null or secondSack == null or thirdSack == null) break;
         // Use a for loop over a set b/c it should have good locality.
         loop: for (firstSack.?) |x| {
             for (secondSack.?) |y| {
-                if (x != y) {
-                    continue;
-                }
+                if (x != y) continue;
                 for (thirdSack.?) |z| {
                     if (x == y and y == z) {
                         prioritySum += calculatePriority(x);
