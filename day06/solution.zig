@@ -34,7 +34,7 @@ fn findMarker(input: []const u8, comptime markerSize: usize) !usize {
     while (i < input.len) : (i += 1) {
         memory[i % markerSize] = input[i];
         if (i < markerSize) continue;
-        loop: for (memory) |mx, mi| {
+        loop: for (memory, 0..) |mx, mi| {
             for (memory[mi + 1 ..]) |my| {
                 if (mx == my) break :loop;
             }

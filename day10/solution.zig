@@ -39,7 +39,7 @@ const Computer = struct {
         self.cycle += 1;
         // Part 1: Signal strength
         if (self.cycle % 40 == 20) {
-            const product = @intCast(i32, self.cycle) * self.regx;
+            const product = @as(i32, @intCast(self.cycle)) * self.regx;
             self.signalStrengths += product;
         }
         // Part 2: CRT monitor
