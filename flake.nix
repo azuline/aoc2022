@@ -2,7 +2,7 @@
   description = "advent of code 2022";
 
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
+    nixpkgs.url = github:nixos/nixpkgs/master;
     flake-utils.url = github:numtide/flake-utils;
   };
 
@@ -14,7 +14,7 @@
             (pkgs.buildEnv {
               name = "aoc2022-shell";
               paths = with pkgs; [
-                zig
+                zig_0_11
                 zls
                 (writeShellScriptBin "run-test" ''
                   zig test solution.zig
